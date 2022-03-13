@@ -2,15 +2,20 @@ import React from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar'
 import { Container, Row } from 'react-bootstrap';
-import Tabs from 'react-bootstrap/Tabs';
-import Tab from 'react-bootstrap/Tab'
-import CSVReader from './csv_reader/csv_reader.tsx';
-import BarChart from './charts/barchart';
+import TabMenu from './TabMenu';
 
 export default function Navigation() {
     const pathname = window.location.pathname;
+
+    // setDatasets(){
+    //     this.setState({
+    //         someVar: 'some value'
+    //     });
+    // };
+
+
     return (
-        <Row noGutters>
+        <Row>
             <Container fluid>
                 <div>
                     <Navbar bg="dark" variant="dark" expand="lg">
@@ -25,19 +30,7 @@ export default function Navigation() {
                         </Container>
                     </Navbar>
                 </div >
-                <Container >
-                    <Tabs defaultActiveKey="about" id="tabs" className="mb-3">
-                        <Tab eventKey="about" title="About">
-                            <div>Instructions on how to use the app</ div>
-                        </Tab>
-                        <Tab eventKey="data" title="Data">
-                            <CSVReader />
-                        </Tab>
-                        <Tab eventKey="visualise" title="Visualise">
-                            <BarChart />
-                        </Tab>
-                    </Tabs>
-                </Container>
+                <TabMenu />
             </Container>
         </Row>
     )
