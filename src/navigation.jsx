@@ -20,7 +20,7 @@ export default function Navigation() {
                 <div>
                     <Navbar bg="dark" variant="dark" expand="lg">
                         <Container>
-                            <Navbar.Brand href="#home">Visualisation App</Navbar.Brand>
+                            <Navbar.Brand href="#home">NB Dashboard</Navbar.Brand>
                             <Nav defaultActiveKey="/" activeKey={pathname}>
                                 <Nav.Item>
                                     <Nav.Link href="/">Home</Nav.Link>

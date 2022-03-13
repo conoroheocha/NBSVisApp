@@ -19,6 +19,7 @@ import '../data/data.tsx';
 
 // import * as ChartGeo from 'chartjs-chart-geo';
 import DoughnutChart from "./xchart"
+import MapChart from "./geo"
 
 ChartJS.register(
     CategoryScale,
@@ -31,46 +32,67 @@ ChartJS.register(
     LineElement
 );
 
-export var options = {
+var yearOptions = {
     responsive: true,
     plugins: {
         legend: {
-            position: 'bottom',
+            display: false
         },
         title: {
             display: true,
-            text: 'Bar Chart',
+            text: 'Publication Year',
         },
     },
 };
 
-var labels = ['2018', '2020'];
-
-export var dataEx = {
-    labels,
-    datasets: [
-        {
-            data: labels.map(() => 300),
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+var indicatorOptions = {
+    responsive: true,
+    plugins: {
+        legend: {
+            display: false
         },
-        {
-            data: labels.map(() => 200),
-            backgroundColor: 'rgba(53, 162, 235, 0.5)',
+        title: {
+            display: true,
+            text: 'Indicator Type',
         },
-    ],
+    },
 };
 
-class BarChart extends Component {
+
+function getFrequencies(arr, field) {
+    const counts = {};
+    var counted = [];
+    for (const item of arr) {
+        if (item.id_number.trim().length > 0 && !(counted.includes(item.id_number))) {
+            counted.push(item.id_number);
+            counts[item[field]] = counts[item[field]] ? counts[item[field]] + 1 : 1;
+        }
+    }
+    return counts;
+}
+
+class Dashboard extends Component {
+
 
     render() {
         console.log("hello")
         console.log(this.props.dataset)
-        var data = {
+        var yearData = {
             // labels,
             datasets: [
                 {
-                    data: this.props.dataset,
+                    data: getFrequencies(this.props.dataset, "year"),
                     backgroundColor: 'rgba(99, 132, 255, 0.75)',
+                }
+            ],
+        }
+
+        var indicatorData = {
+            // labels,
+            datasets: [
+                {
+                    data: getFrequencies(this.props.dataset, "indicator"),
+                    backgroundColor: 'rgba(132, 99, 255, 0.75)',
                 }
             ],
         }
@@ -80,21 +102,16 @@ class BarChart extends Component {
                 <Col>
                     <Row>
                         <Col>
-                            <Bar options={options} data={data} />
+                            <Line options={yearOptions} data={yearData} />
                         </Col>
                         <Col>
-                            <Scatter options={options} data={data} />
+                            <Bar options={indicatorOptions} data={indicatorData} />
                         </Col>
 
                     </Row>
                     <Row>
                         <Col>
-                            <Line options={options} data={data} />
-                        </Col>
-                        <Col>
-                            {/* <DoughnutChart data={data}
-                                title={"hello"}
-                                colors={['#a8e0ff', '#8ee3f5', '#70cad1', '#3e517a', '#b08ea2', '#BBB6DF']} /> */}
+                            <MapChart countryFreq={getFrequencies(this.props.dataset, "country")} />
                         </Col>
                     </Row>
                 </Col>
@@ -104,4 +121,4 @@ class BarChart extends Component {
     }
 }
 
-export default BarChart;
+export default Dashboard;
