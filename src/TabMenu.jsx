@@ -4,6 +4,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import CSVReaderCustom from './csv_reader/csv_reader_custom.tsx';
 import Dashboard from './charts/dashboard';
+import Summary from "./charts/summary"
 
 class TabMenu extends Component {
     constructor(props) {
@@ -11,13 +12,22 @@ class TabMenu extends Component {
 
         this.setData = this.setData.bind(this);
         this.state = { data: [] };
+
+        this.state = { fields: [] };
     }
 
 
     setData(results) {
         console.log("setting data" + results.data)
+        console.log(this.getFields(results.data))
 
-        this.setState({ data: results.data });
+
+        this.setState({ data: results.data, fields: this.getFields(results.data) });
+    }
+
+    getFields(data) {
+        console.log(Object.keys(data[0]))
+        return Object.keys(data[0])
     }
 
     render() {
@@ -30,8 +40,11 @@ class TabMenu extends Component {
                     <Tab eventKey="data" title="Data">
                         <CSVReaderCustom setData={this.setData} />
                     </Tab>
+                    <Tab eventKey="summary" title="Summary">
+                        <Summary dataset={this.state.data} fields={this.state.fields} />
+                    </Tab>
                     <Tab eventKey="visualise" title="Visualise">
-                        <Dashboard dataset={this.state.data} />
+                        <Dashboard dataset={this.state.data} fields={this.state.fields} />
                     </Tab>
                 </Tabs>
             </Container>

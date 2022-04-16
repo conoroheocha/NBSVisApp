@@ -17,25 +17,7 @@ const MapChart = () => {
 
             const labels = countries.map(d => d.properties.name)
             const paises = ["France", "Germany", "United Kingdom", "United States of America", "China", "India", "Spain", "Portugal", "Sweden", "South Africa", "Brazil"]
-            const values = countries.map(d => {
-
-                if (paises.includes(d.properties.name)) {
-
-                    console.log(d)
-                    return {
-
-                        feature: d, value: Math.floor(Math.random() * (6))
-                    }
-                } else {
-                    return {
-                        feature: d, value: 0
-                    }
-
-                }
-
-
-            }
-            );
+            const values = this.props.countryFreq
             console.log(labels)
             console.log(values)
 
