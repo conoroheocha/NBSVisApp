@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { saveAs } from 'file-saver';
 import { Button } from 'react-bootstrap';
 
-async function fetchFile() {
+async function fetchCSV() {
     const response = await fetch('data/SampleCSV.csv');
     const reader = response.body.getReader();
     const result = await reader.read();
@@ -18,9 +18,7 @@ class DownloadButton extends Component {
     }
 
     componentDidMount() {
-        fetchFile().then((response) => this.setState({ csv: response }))
-
-
+        fetchCSV().then((response) => this.setState({ csv: response }))
     }
 
 
@@ -28,7 +26,6 @@ class DownloadButton extends Component {
 
 
         if (this.state.csv != null) {
-            console.log(this.state.csv)
             const blob = new Blob([this.state.csv], { type: "text/csv;charset=utf-8" });
             return (
                 <div

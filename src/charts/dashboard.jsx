@@ -15,9 +15,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 import { Bar, Line, Scatter } from 'react-chartjs-2';
 
-// import * as ChartGeo from 'chartjs-chart-geo';
 import HeatMap from "react-heatmap-grid"
-import MapChart from "./geo"
+import MapChart from "./mapChart"
 
 import Select from 'react-select';
 
@@ -71,10 +70,6 @@ const data = new Array(yLabels.length)
 function getFrequencies(arr, field) {
     const counts = {};
     var counted = [];
-    console.log("setFreq")
-    console.log("arr")
-    console.log(arr)
-    console.log(field)
 
     for (const item of arr) {
         if (item.id_number.trim().length > 0 && !(counted.includes(item.id_number))) {
@@ -82,7 +77,6 @@ function getFrequencies(arr, field) {
             counts[item[field]] = counts[item[field]] ? counts[item[field]] + 1 : 1;
         }
     }
-    console.log(counts)
     return counts;
 }
 
@@ -109,14 +103,6 @@ class Dashboard extends Component {
 
     render() {
         const { selectedOption } = this.state;
-
-        console.log("hello there")
-        console.log(this.props.fields)
-
-
-
-
-
 
         if (!(this.props.fields === undefined || this.props.fields == 0)) {
             populateDropdownOptions(this.props.fields);
@@ -151,7 +137,6 @@ class Dashboard extends Component {
                 ],
             }
 
-            console.log("rerender")
             return (
                 <Container fluid>
                     <Col>

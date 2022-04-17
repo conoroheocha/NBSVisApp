@@ -9,7 +9,7 @@ import {
   formatFileSize,
 } from 'react-papaparse';
 
-export default function CSVReaderCustom(data: any) {
+export default function CSVReader(data: any) {
   const { CSVReader } = useCSVReader();
   const [zoneHover, setZoneHover] = useState(false);
   const [removeHoverColor, setRemoveHoverColor] = useState(
@@ -22,9 +22,6 @@ export default function CSVReaderCustom(data: any) {
         config={{ header: true }}
         onUploadAccepted={(results: any) => {
           data.setData(results)
-          console.log('---------------------------');
-          console.log(results);
-          console.log('---------------------------');
           setZoneHover(false);
         }}
         onDragOver={(event: DragEvent) => {
@@ -103,7 +100,9 @@ const GREY_DIM = '#686868';
 const styles = {
   zone: {
     alignItems: 'center',
-    border: `2px dashed ${GREY}`,
+    borderStyle: `dashed`,
+    borderWidth: '2px',
+    borderColor: GREY,
     borderRadius: 20,
     display: 'flex',
     flexDirection: 'column',

@@ -15,7 +15,9 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 import { Bar, Line, Scatter } from 'react-chartjs-2';
 
-import { getFrequencies } from "./getFrequencies"
+import { getFrequencies } from "./getFrequencies";
+
+import MapChart from "./mapChart";
 
 ChartJS.register(
     CategoryScale,
@@ -29,7 +31,6 @@ ChartJS.register(
 );
 
 class Summary extends Component {
-
 
     newChart(title) {
         return {
@@ -72,6 +73,17 @@ class Summary extends Component {
     }
 
     render() {
+        // var mapData = {
+        //     // labels,
+        //     datasets: [
+        //         {
+        //             data: getFrequencies(this.props.dataset, "country"),
+        //             backgroundColor: 'rgba(99, 132, 255, 0.75)',
+        //         }
+        //     ],
+        // }
+
+
         if (!(this.props.fields === undefined || this.props.fields == 0)) {
             return (
                 <Container fluid>
@@ -89,6 +101,7 @@ class Summary extends Component {
                                 {this.attemptChart("Country", "country")}
                             </Col>
                             <Col>
+                                <MapChart dataset={this.props.dataset} />
                             </Col>
                         </Row>
                         <Row>

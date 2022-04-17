@@ -4,7 +4,11 @@ import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Dashboard from './charts/dashboard';
 import Summary from "./charts/summary";
-import DataPage from "./dataPage/dataPage"
+import DataPage from "./dataPage/dataPage";
+import MapChart from './charts/mapChart';
+
+import 'leaflet/dist/leaflet.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class TabMenu extends Component {
     constructor(props) {
@@ -18,15 +22,10 @@ class TabMenu extends Component {
 
 
     setData(results) {
-        console.log("setting data" + results.data)
-        console.log(this.getFields(results.data))
-
-
         this.setState({ data: results.data, fields: this.getFields(results.data) });
     }
 
     getFields(data) {
-        console.log(Object.keys(data[0]))
         return Object.keys(data[0])
     }
 
@@ -45,6 +44,9 @@ class TabMenu extends Component {
                     </Tab>
                     <Tab eventKey="visualise" title="Visualise">
                         <Dashboard dataset={this.state.data} fields={this.state.fields} />
+                    </Tab>
+                    <Tab eventKey="map" title="Map">
+                        <MapChart dataset={this.state.data} />
                     </Tab>
                 </Tabs>
             </Container>

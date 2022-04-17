@@ -11,13 +11,13 @@ class DataPage extends Component {
                     <Col>
                         <DownloadButton text="Download Sample CSV" />
                     </Col>
-                    <Col>
+                    {/* <Col>
                         <DownloadButton text="Download Excel Dataset" />
-                    </Col>
+                    </Col> */}
                 </Row>
                 <Row>
                     <div >Download one of the above Datasets to get the right data format.
-                        The Sample CSV can be used as is or the Excel dataset can be used to make additons (you'll have to save it as a CSV though).</div>
+                        The Sample CSV can be used as is or the Excel dataset can be used to make additons (you'll need to save it as a CSV to reupload).</div>
                 </Row>
                 <Row>
                     <CSVReader setData={this.props.setData} />
