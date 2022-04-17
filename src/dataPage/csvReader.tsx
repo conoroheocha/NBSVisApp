@@ -2,7 +2,6 @@
 
 import React, { useState, CSSProperties } from 'react';
 import { Container } from 'react-bootstrap';
-import '../data/data.tsx';
 
 import {
   useCSVReader,

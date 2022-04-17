@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Container } from 'react-bootstrap';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-import CSVReaderCustom from './csv_reader/csv_reader_custom.tsx';
 import Dashboard from './charts/dashboard';
-import Summary from "./charts/summary"
+import Summary from "./charts/summary";
+import DataPage from "./dataPage/dataPage"
 
 class TabMenu extends Component {
     constructor(props) {
@@ -38,7 +38,7 @@ class TabMenu extends Component {
                         <div>Instructions on how to use the app</ div>
                     </Tab>
                     <Tab eventKey="data" title="Data">
-                        <CSVReaderCustom setData={this.setData} />
+                        <DataPage setData={this.setData} />
                     </Tab>
                     <Tab eventKey="summary" title="Summary">
                         <Summary dataset={this.state.data} fields={this.state.fields} />

@@ -15,7 +15,6 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 import { Bar, Line, Scatter } from 'react-chartjs-2';
 
-import '../data/data.tsx';
 import { getFrequencies } from "./getFrequencies"
 
 ChartJS.register(
