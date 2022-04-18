@@ -1,57 +1,72 @@
-// const xLabels = new Array(24).fill(0).map((_, i) => `${i}`);
-// const yLabels = ["Sun", "Mon", "Tue"];
-// const data = new Array(yLabels.length)
-//     .fill(0)
-//     .map(() =>
-//         new Array(xLabels.length).fill(0).map(() => Math.floor(Math.random() * 100))
-//     );
-
 import react, { Component } from "react";
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend,
-    PointElement,
-    LineElement
-} from 'chart.js';
 
 import { Container, Row, Col } from 'react-bootstrap';
 
 import { Bar, Line, Scatter } from 'react-chartjs-2';
 
-import HeatMap from "react-heatmap-grid"
+import HeatmapWrapper from "./heatmapWrapper";
 import MapChart from "./mapChart"
 
 import Select from 'react-select';
 import { getTwoFrequencies } from "./getTwoFrequencies"
 
+function populateDropdownOptions(fields) {
+    for (const field of fields) {
+        searchFields.push({ value: field, label: field })
+    }
+}
 
-// const xLabels = ["Urban", "Agricultural", "Coastal", "Inland Water"]
-// const yLabels = ["Micro", "Meso", "Macro"];
-// const data = [[1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]];
+var searchFields = [
+];
 
 class Compare extends Component {
-    render() {
-        if (!(this.props.fields === undefined || this.props.fields == 0)) {
-            const formattedData = getTwoFrequencies(this.props.dataset, "indicator", "sub_indicator")
-            const yLabels = formattedData.fieldXLabels
 
-            console.log(formattedData.fieldYLabels)
-            console.log(formattedData.finalCounts)
+    state = {
+        selectedOptionX: { value: null, label: "sub_indicator" },
+        selectedOptionY: { value: null, label: "indicator" },
+    }
+
+    setFieldX = (selectedOptionX) => {
+        this.setState({ selectedOptionX }, () =>
+            console.log(`Option selected:`, this.state.selectedOptionX)
+        );
+    };
+
+    setFieldY = (selectedOptionY) => {
+        this.setState({ selectedOptionY }, () =>
+            console.log(`Option selected:`, this.state.selectedOptionY)
+        );
+    };
+
+    render() {
+        const { selectedOptionX } = this.state;
+        const { selectedOptionY } = this.state;
+        if (!(this.props.fields === undefined || this.props.fields == 0)) {
+            populateDropdownOptions(this.props.fields);
+            const formattedData = getTwoFrequencies(this.props.dataset, selectedOptionY.label, selectedOptionX.label)
+            const yLabels = formattedData.fieldXLabels
             const xLabels = formattedData.fieldYLabels
             const data = formattedData.finalCounts
 
-            console.log(formattedData.fieldXLabels)
-            console.log(formattedData.fieldYLabels)
-            console.log(formattedData.finalCounts)
             return (
-                <Container fluid>
-                    <HeatMap xLabels={xLabels} yLabels={yLabels} data={data} />
-                </Container>
+                <Col>
+                    <Row>
+                        <Col>
+                            <div>X-Axis</div>
+                            <Select options={searchFields} value={selectedOptionX} onChange={this.setFieldX} />
+                        </Col>
+                        <Col>
+                            <div>Y-Axis</div>
+                            <Select options={searchFields} value={selectedOptionY} onChange={this.setFieldY} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Container fluid>
+                            <HeatmapWrapper xLabels={xLabels} yLabels={yLabels} data={data} show={true} />
+                        </Container>
+                    </Row>
+                </Col>
+
             );
         }
         return (<div>No Data Yet!</div>);
