@@ -9,15 +9,12 @@ import {
     PointElement,
     LineElement
 } from 'chart.js';
-import { Component } from 'react';
+import React, { Component } from 'react';
 
 import { Container, Row, Col } from 'react-bootstrap';
 
-import { Bar, Line, Scatter } from 'react-chartjs-2';
-
-import { getFrequencies } from "./getFrequencies";
-
 import MapChart from "./mapChart";
+import { StandardChart } from './standardChart';
 
 ChartJS.register(
     CategoryScale,
@@ -31,38 +28,13 @@ ChartJS.register(
 );
 
 class Summary extends Component {
-
-    newChart(title) {
-        return {
-            responsive: true,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                title: {
-                    display: true,
-                    text: title
-                },
-            },
-        };
-    }
-
-    newData(field) {
-        return {
-            datasets: [{
-                data: getFrequencies(this.props.dataset, field),
-                backgroundColor: 'rgba(86, 125, 70, 0.9)'
-            }]
-        }
-
-    }
-
-    attemptChart(title, field) {
-        if (this.newData(field).datasets[0].data != null) {
+    attemptChart(title, field, type) {
+        if (this.props.dataset != null) {
             try {
                 return (
-                    <Bar options={this.newChart(title)} data={this.newData(field)} />
+                    <StandardChart dataset={this.props.dataset} field={field} type={type} />
                 )
+
             } catch (error) {
                 console.log(title + " Chart error")
             }
@@ -80,15 +52,15 @@ class Summary extends Component {
                     <Col>
                         <Row>
                             <Col>
-                                {this.attemptChart("Indicator", "indicator")}
+                                {this.attemptChart("Indicator", "indicator", "bar")}
                             </Col>
                             <Col>
-                                {this.attemptChart("Sub-indicator", "sub_indicator")}
+                                {this.attemptChart("Sub-indicator", "sub_indicator", "bar")}
                             </Col>
                         </Row>
                         <Row>
                             <Col>
-                                {this.attemptChart("Country", "country")}
+                                {this.attemptChart("Country", "country", "bar")}
                             </Col>
                             <Col>
                                 <MapChart dataset={this.props.dataset} />
@@ -96,26 +68,26 @@ class Summary extends Component {
                         </Row>
                         <Row>
                             <Col>
-                                {this.attemptChart("Year", "year")}
+                                {this.attemptChart("Year", "year", "line")}
                             </Col>
                             <Col>
-                                {this.attemptChart("Study Duration", "study_duration")}
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                {this.attemptChart("NBS Type", "nbs_type")}
-                            </Col>
-                            <Col>
-                                {this.attemptChart("NBS Setting", "nbs_setting")}
+                                {this.attemptChart("Study Duration", "study_duration", "bar")}
                             </Col>
                         </Row>
                         <Row>
                             <Col>
-                                {this.attemptChart("Study Type", "study_type")}
+                                {this.attemptChart("NBS Type", "nbs_type", "bar")}
                             </Col>
                             <Col>
-                                {this.attemptChart("NBS Scale", "nbs_scale")}
+                                {this.attemptChart("NBS Setting", "nbs_setting", "bar")}
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                {this.attemptChart("Study Type", "study_type", "bar")}
+                            </Col>
+                            <Col>
+                                {this.attemptChart("NBS Scale", "nbs_scale", "bar")}
                             </Col>
                         </Row>
                     </Col>

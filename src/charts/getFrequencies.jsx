@@ -6,7 +6,13 @@ export function getFrequencies(arr, field) {
                 counts[item[field]] = counts[item[field]] ? counts[item[field]] + 1 : 1;
             }
         }
-        return counts;
+
+        const keys = Object.keys(counts)
+
+        const values = Object.values(counts)
+        const datasets = { data: values }
+        const result = { labels: keys, datasets: [datasets] }
+        return result;
     }
     return null;
 }
