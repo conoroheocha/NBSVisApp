@@ -28,19 +28,17 @@ class DownloadButton extends Component {
         if (this.state.csv != null) {
             const blob = new Blob([this.state.csv], { type: "text/csv;charset=utf-8" });
             return (
-                <div
-                    style={{ display: "flex", justifyContent: "center" }}>
-                    <Button variant="primary" size="lg" onClick={() => {
-                        saveAs(
-                            blob,
-                            "SampleCSV.csv"
-                        );
-                    }
-                    } >
-                        {this.props.text}
-                    </Button >
 
-                </div>
+                <Button variant="primary" size="lg" onClick={() => {
+                    saveAs(
+                        blob,
+                        "SampleCSV.csv"
+                    );
+                }
+                } >
+                    {this.props.text}
+                </Button >
+
             )
         }
         return null

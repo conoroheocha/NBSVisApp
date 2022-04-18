@@ -32,7 +32,8 @@ class TabMenu extends Component {
             <Container >
                 <Tabs defaultActiveKey="about" id="tabs" className="mb-3">
                     <Tab eventKey="about" title="About">
-                        <div>Instructions on how to use the app</ div>
+                        <div>Welcome to NB Dashboard! Use this app to generate visualisations of systematic review metadata from the dedicated Excel Spreadsheet.
+                            Choose a file on the Data page to begin.</ div>
                     </Tab>
                     <Tab eventKey="data" title="Data">
                         <DataPage setData={this.setData} />
