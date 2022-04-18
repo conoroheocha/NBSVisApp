@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { Container } from 'react-bootstrap';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-import Dashboard from './charts/dashboard';
+import Compare from './charts/compare';
 import Summary from "./charts/summary";
 import DataPage from "./dataPage/dataPage";
 import MapChart from './charts/mapChart';
-
 import 'leaflet/dist/leaflet.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -42,12 +41,13 @@ class TabMenu extends Component {
                     <Tab eventKey="summary" title="Summary">
                         <Summary dataset={this.state.data} fields={this.state.fields} />
                     </Tab>
-                    <Tab eventKey="visualise" title="Visualise">
-                        <Dashboard dataset={this.state.data} fields={this.state.fields} />
+                    <Tab eventKey="compare" title="Compare">
+                        <Compare dataset={this.state.data} fields={this.state.fields} />
                     </Tab>
                     <Tab eventKey="map" title="Map">
                         <MapChart dataset={this.state.data} />
                     </Tab>
+
                 </Tabs>
             </Container>
         );

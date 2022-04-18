@@ -73,16 +73,6 @@ class Summary extends Component {
     }
 
     render() {
-        // var mapData = {
-        //     // labels,
-        //     datasets: [
-        //         {
-        //             data: getFrequencies(this.props.dataset, "country"),
-        //             backgroundColor: 'rgba(99, 132, 255, 0.75)',
-        //         }
-        //     ],
-        // }
-
 
         if (!(this.props.fields === undefined || this.props.fields == 0)) {
             return (

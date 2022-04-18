@@ -7,13 +7,6 @@ import TabMenu from './TabMenu';
 export default function Navigation() {
     const pathname = window.location.pathname;
 
-    // setDatasets(){
-    //     this.setState({
-    //         someVar: 'some value'
-    //     });
-    // };
-
-
     return (
         <Row>
             <Container fluid>

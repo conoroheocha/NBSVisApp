@@ -50,7 +50,7 @@ class MapChart extends Component {
             );
 
         }
-        return null;
+        return (<div>No Data Yet!</div>);
     }
 };
 
