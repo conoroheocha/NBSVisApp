@@ -15,7 +15,6 @@ class TabMenu extends Component {
 
         this.setData = this.setData.bind(this);
         this.state = { data: [] };
-
         this.state = { fields: [] };
     }
 
@@ -47,7 +46,6 @@ class TabMenu extends Component {
                     <Tab eventKey="map" title="Map">
                         <MapChart dataset={this.state.data} />
                     </Tab>
-
                 </Tabs>
             </Container>
         );

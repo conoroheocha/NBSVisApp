@@ -10,7 +10,7 @@ class HeatmapWrapper extends Component {
             return (
                 <Col style={{ marginTop: 50 }}>
                     <HeatMap xLabels={this.props.xLabels} yLabels={this.props.yLabels}
-                        data={this.props.data} background='rgba(86, 125, 70, 1)'
+                        data={this.props.data} background='rgba(52, 131, 235, 1)'
                         xLabelsLocation="bottom" />
                 </Col>
             )

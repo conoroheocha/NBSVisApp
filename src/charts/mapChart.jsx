@@ -36,8 +36,8 @@ class MapChart extends Component {
                     {markers.map(({ id, coordinates }) => (
                         <Marker key={id} coordinates={coordinates}>
                             <g
-                                fill="#567d46"
-                                stroke="567d46"
+                                fill="#3483eb"
+                                stroke="3483eb"
                                 strokeWidth="2"
                                 strokeLinecap="round"
                                 strokeLinejoin="round"

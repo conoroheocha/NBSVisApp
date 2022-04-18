@@ -51,9 +51,9 @@ function newChart(title) {
     };
 }
 
-function newData(field, dataset) {
-    var result = getFrequencies(dataset, field)
-    result.datasets[0].backgroundColor = 'rgba(86, 125, 70, 0.9)'
+function newData(field, dataset, filter, filterField) {
+    var result = getFrequencies(dataset, field, filter, filterField)
+    result.datasets[0].backgroundColor = 'rgba(52, 131, 235, 0.9)'
 
     return result
 }
@@ -62,14 +62,14 @@ export function StandardChart(props) {
     const chartRef = useRef(null);
 
     if ((props.dataset !== undefined)) {
-        const data = newData(props.field, props.dataset)
+        const data = newData(props.field, props.dataset, props.filter, props.filterField)
 
-        const printElementAtEvent = (element) => {
+        const setFilter = (element) => {
             if (!element.length) return;
 
-            const { datasetIndex, index } = element[0];
+            const { index } = element[0];
 
-            console.log(data.labels[index], data.datasets[datasetIndex].data[index]);
+            props.setFilter(data.labels[index], props.field)
         };
 
         const onClick = (event) => {
@@ -79,7 +79,9 @@ export function StandardChart(props) {
                 return;
             }
 
-            printElementAtEvent(getElementAtEvent(chart, event));
+            setFilter(getElementAtEvent(chart, event));
+
+
         };
 
         return (

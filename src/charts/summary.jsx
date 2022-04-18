@@ -13,8 +13,9 @@ import React, { Component } from 'react';
 
 import { Container, Row, Col } from 'react-bootstrap';
 
-import MapChart from "./mapChart";
 import { StandardChart } from './standardChart';
+
+import { Button } from 'react-bootstrap';
 
 ChartJS.register(
     CategoryScale,
@@ -28,11 +29,26 @@ ChartJS.register(
 );
 
 class Summary extends Component {
+    constructor(props) {
+        super(props);
+
+        this.setFilter = this.setFilter.bind(this);
+        this.state = { filter: null, filterField: null };
+    }
+
+
+    setFilter(filter, filterField) {
+        this.setState({ filter: filter, filterField: filterField });
+    }
+
+
     attemptChart(title, field, type) {
+
         if (this.props.dataset != null) {
             try {
                 return (
-                    <StandardChart dataset={this.props.dataset} field={field} type={type} />
+                    <StandardChart dataset={this.props.dataset} field={field}
+                        type={type} filter={this.state.filter} filterField={this.state.filterField} setFilter={this.setFilter} />
                 )
 
             } catch (error) {
@@ -57,13 +73,8 @@ class Summary extends Component {
                             <Col>
                                 {this.attemptChart("Sub-indicator", "sub_indicator", "bar")}
                             </Col>
-                        </Row>
-                        <Row>
                             <Col>
                                 {this.attemptChart("Country", "country", "bar")}
-                            </Col>
-                            <Col>
-                                <MapChart dataset={this.props.dataset} />
                             </Col>
                         </Row>
                         <Row>
@@ -73,22 +84,28 @@ class Summary extends Component {
                             <Col>
                                 {this.attemptChart("Study Duration", "study_duration", "bar")}
                             </Col>
-                        </Row>
-                        <Row>
                             <Col>
                                 {this.attemptChart("NBS Type", "nbs_type", "bar")}
                             </Col>
+                        </Row>
+                        <Row>
                             <Col>
                                 {this.attemptChart("NBS Setting", "nbs_setting", "bar")}
                             </Col>
-                        </Row>
-                        <Row>
                             <Col>
                                 {this.attemptChart("Study Type", "study_type", "bar")}
                             </Col>
                             <Col>
                                 {this.attemptChart("NBS Scale", "nbs_scale", "bar")}
                             </Col>
+                        </Row>
+                        <Row>
+                            <Button variant="primary" size="lg" onClick={() => {
+                                this.setState({ filter: null, filterField: null })
+                            }
+                            } >
+                                Remove Filter
+                            </Button >
                         </Row>
                     </Col>
                 </Container>

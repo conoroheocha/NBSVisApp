@@ -1,8 +1,8 @@
-export function getFrequencies(arr, field) {
+export function getFrequencies(arr, field, filter, filterField) {
     const counts = {};
     if (field in arr[0]) {
         for (const item of arr) {
-            if (item.id_number.trim().length > 0 && item[field] != "") {
+            if (item.id_number.trim().length > 0 && item[field] != "" && item[filterField] == filter) {
                 counts[item[field]] = counts[item[field]] ? counts[item[field]] + 1 : 1;
             }
         }
