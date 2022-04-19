@@ -53,9 +53,9 @@ function newChart(title) {
     };
 }
 
-function newData(field, dataset, filter, filterField) {
+function newData(field, dataset, filter, filterField, colour) {
     var result = getFrequencies(dataset, field, filter, filterField)
-    result.datasets[0].backgroundColor = 'rgba(52, 131, 235, 0.9)'
+    result.datasets[0].backgroundColor = colour
 
     return result
 }
@@ -64,7 +64,7 @@ export function StandardChart(props) {
     const chartRef = useRef(null);
 
     if ((props.dataset !== undefined)) {
-        const data = newData(props.field, props.dataset, props.filter, props.filterField)
+        const data = newData(props.field, props.dataset, props.filter, props.filterField, props.colour)
 
         const setFilter = (element) => {
             if (!element.length) return;

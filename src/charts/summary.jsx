@@ -42,13 +42,14 @@ class Summary extends Component {
     }
 
 
-    attemptChart(title, field, type) {
+    attemptChart(title, field, type, colour) {
 
         if (this.props.dataset != null) {
             try {
                 return (
                     <StandardChart dataset={this.props.dataset} field={field}
-                        type={type} filter={this.state.filter} filterField={this.state.filterField} setFilter={this.setFilter} />
+                        type={type} filter={this.state.filter} filterField={this.state.filterField}
+                        setFilter={this.setFilter} colour={colour} />
                 )
 
             } catch (error) {
@@ -61,42 +62,48 @@ class Summary extends Component {
     }
 
     render() {
-
+        const colours = {
+            yellow: "rgba(253,192,16, 0.9)",
+            lightGreen: "rgba(139,195,74, 0.9)",
+            darkGreen: "rgba(67,160,71, 0.9)",
+            darkBlue: "rgba(0,150,136, 0.9)",
+            lightBlue: "rgba(9,188,211, 0.9)",
+        }
         if (!(this.props.fields === undefined || this.props.fields == 0)) {
             return (
                 <Container fluid>
                     <Col>
                         <Row>
                             <Col>
-                                {this.attemptChart("Indicator", "indicator", "bar")}
+                                {this.attemptChart("Indicator", "indicator", "bar", colours.lightBlue)}
                             </Col>
                             <Col>
-                                {this.attemptChart("Sub-indicator", "sub_indicator", "bar")}
+                                {this.attemptChart("Sub-indicator", "sub_indicator", "bar", colours.yellow)}
                             </Col>
                             <Col>
-                                {this.attemptChart("Country", "country", "bar")}
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                {this.attemptChart("Year", "year", "line")}
-                            </Col>
-                            <Col>
-                                {this.attemptChart("Study Duration", "study_duration", "bar")}
-                            </Col>
-                            <Col>
-                                {this.attemptChart("NBS Type", "nbs_type", "bar")}
+                                {this.attemptChart("Country", "country", "bar", colours.darkGreen)}
                             </Col>
                         </Row>
                         <Row>
                             <Col>
-                                {this.attemptChart("NBS Setting", "nbs_setting", "bar")}
+                                {this.attemptChart("Year", "year", "line", colours.yellow)}
                             </Col>
                             <Col>
-                                {this.attemptChart("Study Type", "study_type", "bar")}
+                                {this.attemptChart("Study Duration", "study_duration", "bar", colours.darkBlue)}
                             </Col>
                             <Col>
-                                {this.attemptChart("NBS Scale", "nbs_scale", "bar")}
+                                {this.attemptChart("NBS Type", "nbs_type", "bar", colours.lightGreen)}
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                {this.attemptChart("NBS Setting", "nbs_setting", "bar", colours.lightBlue)}
+                            </Col>
+                            <Col>
+                                {this.attemptChart("Study Type", "study_type", "bar", colours.darkGreen)}
+                            </Col>
+                            <Col>
+                                {this.attemptChart("NBS Scale", "nbs_scale", "bar", colours.darkBlue)}
                             </Col>
                         </Row>
                         <Row>
