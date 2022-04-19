@@ -15,8 +15,7 @@ const geoUrl =
 class MapChart extends Component {
     render() {
 
-
-        if (!(this.props.dataset === undefined || this.props.dataset == null)) {
+        if (!(this.props.dataset === undefined || this.props.dataset.length == 0)) {
             const markers = getCoordinates(this.props.dataset);
             return (
                 <ComposableMap>

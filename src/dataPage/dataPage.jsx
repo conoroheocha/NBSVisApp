@@ -25,8 +25,8 @@ class DataPage extends Component {
                     </Col>
                 </Row >
                 <Row>
-                    <div >Download one of the above Datasets to get the right data format.
-                        The Sample CSV can be used as is or the Excel dataset can be used to make additons (you'll need to download and save it as a CSV in Excel before reuploading).</div>
+                    <div >Download one of the above Datasets to get the right data format or just set the toggle to use Sample Data.
+                        The Sample CSV can be reuploaded as is or the Excel dataset can be used to make additions (you'll need to download and save it as a CSV in Excel before reuploading).</div>
                 </Row>
                 <Row>
                     <CSVReader setData={this.props.setData} />
