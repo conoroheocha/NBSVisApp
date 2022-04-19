@@ -8,15 +8,17 @@ import {
     LineElement,
     Legend,
     Tooltip,
-    ArcElement
+    ArcElement,
+    registerables as registerablesJS
 } from 'chart.js';
 import {
     Chart,
     getElementAtEvent,
 } from 'react-chartjs-2';
 
-import { getFrequencies } from "./getFrequencies"
 
+import { getFrequencies } from "./getFrequencies"
+ChartJS.register(...registerablesJS);
 ChartJS.register(
     LinearScale,
     CategoryScale,
