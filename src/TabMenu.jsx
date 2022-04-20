@@ -10,6 +10,7 @@ import 'leaflet/dist/leaflet.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { sampleData } from './dataPage/sampleData';
 import { DataToggle } from './dataPage/dataToggle';
+import Stacked from './charts/stacked';
 
 class TabMenu extends Component {
     constructor(props) {
@@ -79,7 +80,10 @@ class TabMenu extends Component {
                     <Tab eventKey="summary" title="Summary">
                         <Summary dataset={this.state.data} fields={this.state.fields} />
                     </Tab>
-                    <Tab eventKey="compare" title="Compare">
+                    <Tab eventKey="stacked" title="Indicator Breakdown">
+                        <Stacked dataset={this.state.data} fields={this.state.fields} />
+                    </Tab>
+                    <Tab eventKey="compare" title="Compare Fields">
                         <Compare dataset={this.state.data} fields={this.state.fields} />
                     </Tab>
                     <Tab eventKey="map" title="Map">

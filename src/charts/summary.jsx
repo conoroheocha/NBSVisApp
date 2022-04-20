@@ -74,6 +74,9 @@ class Summary extends Component {
                 <Container fluid>
                     <Col>
                         <Row>
+                            <div>Click on an element to filter</div>
+                        </Row>
+                        <Row>
                             <Col>
                                 {this.attemptChart("Indicator", "indicator", "bar", colours.lightBlue)}
                             </Col>
