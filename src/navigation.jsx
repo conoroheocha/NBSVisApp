@@ -15,9 +15,9 @@ export default function Navigation() {
                         <Container>
                             <Navbar.Brand href="#home">NB Dashboard</Navbar.Brand>
                             <Nav defaultActiveKey="/" activeKey={pathname}>
-                                <Nav.Item>
+                                {/* <Nav.Item>
                                     <Nav.Link href="/">Home</Nav.Link>
-                                </Nav.Item>
+                                </Nav.Item> */}
                                 <Nav.Link href="https://github.com/conoroheocha/NBSVisApp">Github</Nav.Link>
                             </Nav>
                         </Container>

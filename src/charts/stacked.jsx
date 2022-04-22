@@ -15,7 +15,7 @@ ChartJS.register(...registerablesJS);
 
 class Stacked extends Component {
     render() {
-        if ((this.props.dataset !== undefined)) {
+        if (this.props.dataset != undefined && this.props.dataset.length != 0) {
             const data = sortData(this.props.dataset)
 
             return (
