@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { Container } from 'react-bootstrap';
 
 import {
     Chart as ChartJS,
@@ -19,7 +20,8 @@ class Stacked extends Component {
             const data = sortData(this.props.dataset)
 
             return (
-                <Chart type="bar" data={data} />
+                <Container fluid={true}><Chart type="bar" data={data} /></Container>
+
             )
         }
         else {

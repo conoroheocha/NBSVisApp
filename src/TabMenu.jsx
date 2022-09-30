@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Row, Container, Button, ListGroupItem } from 'react-bootstrap';
+import { Col, Row, Container, Button, Card } from 'react-bootstrap';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Compare from './charts/compare';
@@ -12,8 +12,8 @@ import { sampleData } from './dataPage/sampleData';
 import { DataToggle } from './dataPage/dataToggle';
 import { filterData } from './charts/filterData';
 import Stacked from './charts/stacked';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Accordion from 'react-bootstrap/Accordion';
+// import ListGroup from 'react-bootstrap/ListGroup';
+// import Accordion from 'react-bootstrap/Accordion';
 
 class TabMenu extends Component {
     constructor(props) {
@@ -93,9 +93,29 @@ class TabMenu extends Component {
         }
     }
 
+    reformat(str) {
+        return str.split('_').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join('_').replaceAll('_', " ")
+    }
+
+    removeFilter(index) {
+        this.setState(prevState => ({
+            filter: {
+                include: prevState.filter.include.splice(index, 1),
+                exclude: []
+            }
+        }))
+    }
+
     //TODO make it so that only fields with repeated categories appear
-    showFilter() {
+    showFilters() {
         if (!(this.state.fields === undefined || this.state.fields == 0)) {
+
+            return this.state.filter.include.map((res, i) => <Card key={i}>
+                <Card.Body>{this.reformat(Object.keys(this.state.filter.include[i])[0]) +
+                    ": " + Object.values(this.state.filter.include[i])}</Card.Body>
+            </Card>)
+
+
             // return (<ListGroup>
             //     {this.getFields(this.state.data).map((e, i) =>
             //         <ListGroupItem key={i}>
@@ -121,25 +141,27 @@ class TabMenu extends Component {
             <Row>
                 <Col xs={6} sm={4} md={2}>
                     <Row>
-                        <h1>
+                        <h3>
                             Filters
-                        </h1>
+                        </h3>
                     </Row>
-                    <Row>
-                        <Container>
-
-                            {this.showFilter()}
-
-                        </Container>
-                    </Row>
-                    <Row>
-                        <Button variant="primary" size="sm" onClick={() => {
-                            this.setState({ filteredData: this.state.data })
-                        }
-                        } >
-                            Remove Filter
-                        </Button >
-                    </Row>
+                    <div className="d-grid gap-2">
+                        <Row>
+                            <Container>
+                                <div className="d-grid gap-2">
+                                    {this.showFilters()}
+                                </div>
+                            </Container>
+                        </Row>
+                        <Row>
+                            <Button variant="primary" size="sm" onClick={() => {
+                                this.setState({ filteredData: this.state.data, filter: { include: [], exclude: [] } })
+                            }
+                            } >
+                                Remove All
+                            </Button >
+                        </Row>
+                    </div>
                 </Col>
                 <Col xs={6} sm={8} md={10}>
                     <Container >

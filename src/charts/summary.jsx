@@ -72,7 +72,7 @@ class Summary extends Component {
         }
         if (!(this.props.fields === undefined || this.props.fields == 0)) {
             return (
-                <Container>
+                <Container fluid={true}>
                     <Col>
                         <Row>
                             <div>Click on an element to filter</div>

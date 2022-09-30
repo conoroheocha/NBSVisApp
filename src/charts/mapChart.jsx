@@ -8,7 +8,7 @@ import {
 import { getCoordinates } from "./getCoordinates";
 
 const geoUrl =
-    "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
+    "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/77e7678ebdf83e35fe05ca9020b65270e28d4617/topojson-maps/world-110m.json";
 
 
 
