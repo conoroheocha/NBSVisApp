@@ -30,15 +30,9 @@ ChartJS.register(
     ArcElement
 );
 
-export const options = {
-    scales: {
-        y: {
-            beginAtZero: true,
-        },
-    },
-};
-
 function newChart(title) {
+    const formattedTitle = title.split('_').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join('_').replaceAll('_', " ");
+
     return {
         responsive: true,
         plugins: {
@@ -47,14 +41,23 @@ function newChart(title) {
             },
             title: {
                 display: true,
-                text: title
+                text: formattedTitle
             },
-        }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: "Frequency"
+                },
+            },
+        },
     };
 }
 
-function newData(field, dataset, filter, filterField, colour) {
-    var result = getFrequencies(dataset, field, filter, filterField)
+function newData(field, dataset, colour) {
+    var result = getFrequencies(dataset, field)
     result.datasets[0].backgroundColor = colour
 
     return result
@@ -64,7 +67,7 @@ export function StandardChart(props) {
     const chartRef = useRef(null);
 
     if ((props.dataset !== undefined)) {
-        const data = newData(props.field, props.dataset, props.filter, props.filterField, props.colour)
+        const data = newData(props.field, props.dataset, props.colour)
 
         const setFilter = (element) => {
             if (!element.length) return;

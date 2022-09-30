@@ -38,7 +38,8 @@ class Summary extends Component {
 
 
     setFilter(filter, filterField) {
-        this.setState({ filter: filter, filterField: filterField });
+        this.props.setOverallFilter(filter, filterField)
+        //this.setState({ filter: filter, filterField: filterField });
     }
 
 
@@ -71,52 +72,56 @@ class Summary extends Component {
         }
         if (!(this.props.fields === undefined || this.props.fields == 0)) {
             return (
-                <Container fluid>
+                <Container>
                     <Col>
                         <Row>
                             <div>Click on an element to filter</div>
                         </Row>
                         <Row>
-                            <Col>
+                            <Col xs={6}>
                                 {this.attemptChart("Indicator", "indicator", "bar", colours.lightBlue)}
                             </Col>
-                            <Col>
+                            <Col xs={6}>
                                 {this.attemptChart("Sub-indicator", "sub_indicator", "bar", colours.yellow)}
                             </Col>
-                            <Col>
+                        </Row>
+                        <Row>
+                            <Col xs={12}>
                                 {this.attemptChart("Country", "country", "bar", colours.darkGreen)}
                             </Col>
                         </Row>
                         <Row>
-                            <Col>
+                            <Col xs={6}>
                                 {this.attemptChart("Year", "year", "line", colours.yellow)}
                             </Col>
-                            <Col>
+                            <Col xs={6}>
                                 {this.attemptChart("Study Duration", "study_duration", "bar", colours.darkBlue)}
-                            </Col>
-                            <Col>
-                                {this.attemptChart("NBS Type", "nbs_type", "bar", colours.lightGreen)}
                             </Col>
                         </Row>
                         <Row>
-                            <Col>
+                            <Col xs={6}>
+                                {this.attemptChart("NBS Type", "nbs_type", "bar", colours.lightGreen)}
+                            </Col>
+                            <Col xs={6}>
                                 {this.attemptChart("NBS Setting", "nbs_setting", "bar", colours.lightBlue)}
                             </Col>
-                            <Col>
+                        </Row>
+                        <Row>
+                            <Col xs={6}>
                                 {this.attemptChart("Study Type", "study_type", "bar", colours.darkGreen)}
                             </Col>
-                            <Col>
+                            <Col xs={6}>
                                 {this.attemptChart("NBS Scale", "nbs_scale", "bar", colours.darkBlue)}
                             </Col>
                         </Row>
-                        <Row>
+                        {/* <Row>
                             <Button variant="primary" size="lg" onClick={() => {
                                 this.setState({ filter: null, filterField: null })
                             }
                             } >
                                 Remove Filter
                             </Button >
-                        </Row>
+                        </Row> */}
                     </Col>
                 </Container>
             );
