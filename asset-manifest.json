@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/NBSVisApp/static/css/main.86e26ccb.css",
-    "main.js": "/NBSVisApp/static/js/main.46c62eaa.js",
+    "main.js": "/NBSVisApp/static/js/main.6094af04.js",
     "index.html": "/NBSVisApp/index.html",
     "main.86e26ccb.css.map": "/NBSVisApp/static/css/main.86e26ccb.css.map",
-    "main.46c62eaa.js.map": "/NBSVisApp/static/js/main.46c62eaa.js.map"
+    "main.6094af04.js.map": "/NBSVisApp/static/js/main.6094af04.js.map"
   },
   "entrypoints": [
     "static/css/main.86e26ccb.css",
-    "static/js/main.46c62eaa.js"
+    "static/js/main.6094af04.js"
   ]
 }
